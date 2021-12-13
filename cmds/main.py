@@ -12,7 +12,7 @@ class Main(Cog_Extension):
     
     @commands.command()
     async def ping(self,ctx):
-        await ctx.send(f"{round(self.bot.latency*1000)}(ms)")
+        await ctx.send(f"{round(self.bot.latency*1000)}ms")
 
     @commands.command()
     async def hi(self,ctx):
@@ -20,7 +20,7 @@ class Main(Cog_Extension):
 
     @commands.command()
     async def em(self,ctx):
-        embed=discord.Embed(title="About", description="About the bot", color=0x007bff,
+        embed=discord.Embed(title="All star", description="All star character", color=0x007bff,
         timestamp = datetime.datetime.utcnow())
         embed.set_author(name="harryxd_x", icon_url="https://i.pinimg.com/564x/6a/17/03/6a17031bd6d1def14da3db7840ca0698.jpg")
         embed.set_thumbnail(url="https://i.pinimg.com/564x/6a/17/03/6a17031bd6d1def14da3db7840ca0698.jpg")
@@ -28,7 +28,7 @@ class Main(Cog_Extension):
         embed.add_field(name="4*", value="nothing,nothing", inline=False)
         embed.add_field(name="3*", value="nothing,nothing,nothing", inline=False)
         embed.add_field(name="money", value="nothing,nothing,nothing,nothing,nothing", inline=True)
-        embed.set_footer(text="haha")
+        embed.set_footer(text="nothing:P")
         await ctx.send(embed=embed)
 
     @commands.command()
