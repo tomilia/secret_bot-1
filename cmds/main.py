@@ -39,7 +39,7 @@ class Main(Cog_Extension):
     @commands.command()
     async def delete(self,ctx,num:int):
         await ctx.channel.purge(limit=num+1)
-        await ctx.send(ctx.author,':delete complete')
+
             
         
 def setup(bot):
