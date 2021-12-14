@@ -4,8 +4,8 @@ from core.classes import Cog_Extension
 import json
 import datetime
 
-with open('setting.json','r',encoding='utf8')as jFile:
-    jdata=json.load(jFile)
+with open('setting.json','r',encoding='utf8')as jfile:
+    jdata=json.load(jfile)
 
 class Main(Cog_Extension):
 
