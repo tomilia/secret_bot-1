@@ -1,6 +1,0 @@
-{
-    "powermode.enabled": true,
-    "powermode.shakeIntensity": 10,
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
-}
