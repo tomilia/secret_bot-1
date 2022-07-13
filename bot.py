@@ -6,6 +6,7 @@ import os
 
 intents=discord.Intents.default()
 intents.members= True
+intents.presences = True
 
 with open('setting.json','r',encoding='utf8')as jfile:
     jdata=json.load(jfile)
