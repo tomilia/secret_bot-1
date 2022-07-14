@@ -1,8 +1,7 @@
 import discord
 from discord.ext import commands
 import json
-import random
-import os
+import random, os
 
 intents=discord.Intents.all()
 intents.members= True
@@ -19,7 +18,7 @@ bot = commands.Bot(command_prefix=";",intents=intents)
 
 @bot.event
 async def on_ready():
-    print("✅Bot is online✅")
+    print("Bot is online, ✔️")
 
 @bot.command()
 async def load(ctx,extension):

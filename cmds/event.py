@@ -1,3 +1,4 @@
+from lib2to3 import refactor
 import discord
 from discord.ext import commands
 from core.classes import Cog_Extension, Gloable_Data
@@ -36,6 +37,11 @@ class Event(Cog_Extension):
             return
         else:  # 使用 Default Error Handler
             await Errors.default_error(self, ctx, error)
+    
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, data):
+        print(data.emoji)
+        print(data.member)
 
 def setup(bot):
     bot.add_cog(Event(bot))
