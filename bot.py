@@ -4,17 +4,22 @@ import json
 import random
 import os
 
-intents=discord.Intents.default()
+intents=discord.Intents.all()
 intents.members= True
 intents.presences = True
 
 with open('setting.json','r',encoding='utf8')as jfile:
     jdata=json.load(jfile)
+
+
+
 bot = commands.Bot(command_prefix=";",intents=intents)
+
+
 
 @bot.event
 async def on_ready():
-    print(">>Bot is online<<")
+    print("✅Bot is online✅")
 
 @bot.command()
 async def load(ctx,extension):

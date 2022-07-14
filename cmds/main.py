@@ -74,7 +74,32 @@ class Main(Cog_Extension):
             await ctx.send(f"Grop{squad+1}:" + str(a))
             for name in a:
                 random_online.remove(name)
+
         
+    @commands.group()
+    async def codetest(self, ctx):
+        pass
+
+    @codetest.command()
+    async def python(self, ctx):
+        await ctx.send("Python")
+        
+    @codetest.command()
+    async def javascript(self, ctx):
+        await ctx.send("javascript")
+        
+    @codetest.command()
+    async def cpp(self, ctx):
+        await ctx.send("C++")
+        
+
+    @commands.command()
+    async def cmdA(self, ctx, num: float):
+        await ctx.send(num)
+
+    @commands.command()
+    async def cmdB(self, ctx, num: float):
+        await ctx.send(num)
 
             
         
