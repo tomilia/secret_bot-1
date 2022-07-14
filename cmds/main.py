@@ -63,7 +63,7 @@ class Main(Cog_Extension):
     async def random_grop(self,ctx):
         online = []
         for member in ctx.guild.members:
-            if str(member.status) == 'online' and member.bot == False:
+            if str(member.status) == 'online' and member.bot == False or str(member.status) == 'idle' and member.bot == False:
                 online.append(member.name)
 
 
