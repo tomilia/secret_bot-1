@@ -1,3 +1,4 @@
+from itertools import count
 from lib2to3 import refactor
 import discord
 from discord.ext import commands
@@ -40,8 +41,39 @@ class Event(Cog_Extension):
     
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, data):
-        print(data.emoji)
-        print(data.member)
+        #判斷反應貼圖給予相對應的身份組
+        #判斷反應反應信息是否為指定的訊息
+        if data.message_id == 997525435313299558:
+            if str(data.emoji) == '<:jail:997316329340162100>':
+                guild = self.bot.get_guild(data.guild_id)#取得當前所在伺服器
+                role = guild.get_role(997517745589600369)#取得伺服器內指定的身份組
+                await data.member.add_roles(role)#給予該成員身份組
+                await data.member.send(f"你取得了**{role}**身份組!")
+
+    @commands.Cog.listener()
+    async def on_raw_reaction_remove(self, data):
+        #判斷反應貼圖給予相對應的身份組
+        #判斷反應反應信息是否為指定的訊息
+        if data.message_id == 997525435313299558: 
+            if str(data.emoji) == '<:jail:997316329340162100>':
+                guild = self.bot.get_guild(data.guild_id)#取得當前所在伺服器
+                user = guild.get_member(data.user_id)#取得使用者
+                role = guild.get_role(997517745589600369)#取得伺服器內指定的身份組
+                await user.remove_roles(role)#移除該成員身份組
+                await user.send(f"你移除了**{role}**身份組!")
+
+    @commands.Cog.listener()
+    async def on_message_delete(self, msg):
+        counter = 1
+        async for audilog in msg.guild.audit_logs(action=discord.AuditLogAction.message_delete):
+            if counter == 1:
+                await msg.channel.send(audilog.user.name)
+                counter += 1
+            
+
+        # await msg.channel.send("刪除訊息內容:" + str(msg.content))
+        # await msg.channel.send("信息原本的作者:" + str(msg.author))
+
 
 def setup(bot):
     bot.add_cog(Event(bot))

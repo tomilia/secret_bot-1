@@ -1,7 +1,7 @@
 import discord
 from discord.ext import commands
 import json
-import random, os
+import random, os, asyncio
 
 intents=discord.Intents.all()
 intents.members= True
@@ -13,7 +13,6 @@ with open('setting.json','r',encoding='utf8')as jfile:
 
 
 bot = commands.Bot(command_prefix=";",intents=intents)
-
 
 
 @bot.event

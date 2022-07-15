@@ -20,13 +20,28 @@ class Main(Cog_Extension):
     async def hi(self,ctx):
         await ctx.send('hi:P')
 
+
+
+
     @commands.command()
-    async def info(self,ctx):
-        embed=discord.Embed(title="Bot info", color=0x007bff,
-        timestamp = datetime.datetime.utcnow())
+    async def info(self, ctx):
+        embed = discord.Embed(title="secret bot", description="my first discord bot !", color=0x28ddb0)
         embed.set_author(name="secret bot", icon_url="https://yt3.ggpht.com/Jc6PYgdUIVd2lWGKub6MECAIVbRjHdbzFhOq6nMjsh6uM1HkXVC3AipTIV7qtLVB0uoAUlCmUQ=s600-c-k-c0x00ffffff-no-rj-rp-mo")
-        embed.add_field(name="ping", value=f"{round(self.bot.latency*1000)}ms", inline=False)
+        #embed.set_thumbnail(url="https://www.youtube.com/channel/UCBQifyXpKXmtzBzI_qK97rw/featured")
+        embed.add_field(name="開發者 Developers", value="harryxd_x#0211 (<@!823743982680801281>)", inline=False)
+        embed.add_field(name="版本 Version", value="0.7.1 b", inline=False)
+        embed.add_field(name="Prefix", value=";", inline=False)
+        embed.set_footer(text="Made with ❤")
         await ctx.send(embed=embed)
+
+
+    # @commands.command()
+    # async def info(self,ctx):
+    #     embed=discord.Embed(title="Bot info", color=0x007bff,
+    #     timestamp = datetime.datetime.utcnow())
+    #     embed.set_author(name="secret bot", icon_url="https://yt3.ggpht.com/Jc6PYgdUIVd2lWGKub6MECAIVbRjHdbzFhOq6nMjsh6uM1HkXVC3AipTIV7qtLVB0uoAUlCmUQ=s600-c-k-c0x00ffffff-no-rj-rp-mo")
+    #     embed.add_field(name="ping", value=f"{round(self.bot.latency*1000)}ms", inline=False)
+    #     await ctx.send(embed=embed)
 
         #await ctx.message.delete()
 
@@ -38,7 +53,7 @@ class Main(Cog_Extension):
         embed.add_field(name="延遲", value=f"{round(self.bot.latency*1000)}毫秒", inline=False)
         await ctx.send(embed=embed)
     
-    #embed=discord.Embed(title="All star", description="All star character", color=0x007bff,
+    #embed = discord.Embed(title="All star", description="All star character", color=0x007bff,
     #timestamp = datetime.datetime.utcnow())
     #embed.set_author(name="secret bot", icon_url="https://yt3.ggpht.com/Jc6PYgdUIVd2lWGKub6MECAIVbRjHdbzFhOq6nMjsh6uM1HkXVC3AipTIV7qtLVB0uoAUlCmUQ=s600-c-k-c0x00ffffff-no-rj-rp-mo")
     #embed.set_thumbnail(url="https://i.pinimg.com/564x/6a/17/03/6a17031bd6d1def14da3db7840ca0698.jpg")
