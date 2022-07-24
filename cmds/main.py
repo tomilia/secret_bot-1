@@ -105,7 +105,7 @@ class Main(Cog_Extension):
 		embed.set_author(name="secret bot", icon_url="https://yt3.ggpht.com/Jc6PYgdUIVd2lWGKub6MECAIVbRjHdbzFhOq6nMjsh6uM1HkXVC3AipTIV7qtLVB0uoAUlCmUQ=s600-c-k-c0x00ffffff-no-rj-rp-mo")
 		#embed.set_thumbnail(url="https://www.youtube.com/channel/UCBQifyXpKXmtzBzI_qK97rw/featured")
 		embed.add_field(name="開發者 Developers", value="harryxd_x#0211 (<@!823743982680801281>)", inline=False)
-		embed.add_field(name="版本 Version", value="0.7.1 b", inline=False)
+		embed.add_field(name="版本 Version", value="0.8.3 b", inline=False)
 		embed.add_field(name="Prefix", value=";", inline=False)
 		embed.set_footer(text="Made with ❤")
 		await ctx.send(embed=embed)

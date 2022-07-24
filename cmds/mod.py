@@ -1,4 +1,3 @@
-from this import d
 import discord
 from discord.ext import commands
 from core.classes import Cog_Extension, Global_Func
