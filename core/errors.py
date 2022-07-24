@@ -12,9 +12,9 @@ class Errors():
 	"""該類別用於定義錯誤處裡邏輯"""
 
 	# 自訂 Error Handler
-	@Main.delete.error
-	async def delete_error(self, ctx, error):
-		# '''Main.delete 的指令錯誤處理'''
+	@Main.say.error
+	async def say_error(self, ctx, error):
+		# '''Main.say 的指令錯誤處理'''
 		if isinstance(error, commands.MissingRequiredArgument):
 			err = str(error).split(" ")[0]
 			await ctx.send(f"遺失要刪除的數量： <`{err}`>")
