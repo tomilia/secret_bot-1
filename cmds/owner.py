@@ -12,14 +12,14 @@ class Owner(Cog_Extension):
 	async def load(self, ctx, extension):
 		'''裝載 Cog'''
 		self.bot.load_extension(f'cmds.{extension}')
-		await ctx.send(f'Loaded {extension} done.')
+		await ctx.send(f'Loaded **{extension}** done.')
 
 	@commands.command()
 	@commands.is_owner()
 	async def unload(self, ctx, extension):
 		'''卸載 Cog'''
 		self.bot.unload_extension(f'cmds.{extension}')
-		await ctx.send(f'Un - Loaded {extension} done.')
+		await ctx.send(f'UnLoaded **{extension}** done.')
 
 	@commands.command()
 	@commands.is_owner()
@@ -29,10 +29,10 @@ class Owner(Cog_Extension):
 			for filename in os.listdir('./cmds'):
 				if filename.endswith('.py'):
 					self.bot.reload_extension(f'cmds.{filename[:-3]}')
-			await ctx.send(f'Re - Loaded All done.')
+			await ctx.send(f'ReLoaded All done.')
 		else:
 			self.bot.reload_extension(f'cmds.{extension}')
-			await ctx.send(f'Re - Loaded {extension} done.')
+			await ctx.send(f'ReLoaded **{extension}** done.')
 
 	@commands.command()
 	@commands.is_owner()

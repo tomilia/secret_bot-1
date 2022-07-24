@@ -16,8 +16,10 @@ class Mod(Cog_Extension):
 		await ctx.channel.purge(limit=num + 1)
 		
 		levels = {
-			"a": "非對應頻道內容",
-			"b": "不雅用詞"
+			"1": "非對應頻道內容",
+			"2": "不雅用詞",
+			"3": "刷屏",
+			"4": "沒有用或有害的連結"	
 		}
 
 		if reason is not None:

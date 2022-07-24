@@ -2,9 +2,10 @@ from itertools import count
 from lib2to3 import refactor
 import discord
 from discord.ext import commands
-from core.classes import Cog_Extension, Gloable_Data
+from core.classes import Cog_Extension, Gloable_Data ,Global_Func
 from core.errors import Errors
 import json, datetime, asyncio
+import random
 
 with open('setting.json','r', encoding='utf8') as jfile:
 	jdata = json.load(jfile)
@@ -13,19 +14,26 @@ class Event(Cog_Extension):
 	@commands.Cog.listener()
 	async def on_member_join(self,member):
 		channel = self.bot.get_channel(int(jdata['Welcome_channel']))
-		await channel.send(F"{member}join!👋🏻")
+		await channel.send(f"Hi{member.author.mention} , Welocme to **{member.guild.name}**👋🏻")
 
 	@commands.Cog.listener()
 	async def on_member_remove(self,member):
 		channel = self.bot.get_channel(int(jdata['Leave_channel']))
-		await channel.send(F"{member}leave!👋🏻")
+		await channel.send(f"Noooo{member.author.mention} just dead in **{member.guild.name}**😵")
 
 	@commands.Cog.listener()
 	async def on_message(self,msg):
+		keyword2 =['hi','hello','Hi','Hello']
 		keyword =['apple','pen','pie','abc']
+		keyword3 =['Parrot','Parrot_bot']
 		if msg.content in keyword and msg.author != self.bot.user:
-			await msg.channel.send('apple')
-
+			random_msgs = random.choice(jdata['randome_msg'])
+			await msg.channel.send(random_msgs)
+		elif msg.content in keyword2 and msg.author != self.bot.user:
+			await msg.reply(f"{msg.author.mention} \nhi welocme to **{msg.guild.name}** server")
+		elif msg.content in keyword3 and msg.author != self.bot.user:
+			await msg.reply(Global_Func.code(lang="diff",msg = f"-{msg.author.name} \n-i am not fucking Parrot"))
+		# lang diff = red ,css[] = orange , fix = yellow , diff+ = green , css“ = light green , ini[ = blue
 
 	@commands.Cog.listener()
 	async def on_command_error(self, ctx, error):
