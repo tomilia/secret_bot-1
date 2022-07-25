@@ -23,14 +23,20 @@ class Event(Cog_Extension):
 
 	@commands.Cog.listener()
 	async def on_message(self,msg):
+		keyword1 =jdata['randome_msg_1']
 		keyword2 =['hi','hello','Hi','Hello']
 		keyword =['apple','pen','pie','abc']
 		keyword3 =['Parrot','Parrot_bot']
-		if msg.content in keyword and msg.author != self.bot.user:
-			random_msgs = random.choice(jdata['randome_msg'])
+		random_msgs = random.choice(jdata['randome_msg'])
+		random_msgs_1 = random.choice(jdata['randome_msg_1'])
+		if msg.content in keyword1 and msg.author.bot == False and msg.author != self.bot.user:
+			await msg.channel.send(random_msgs_1)
+			if random_msgs_1 == msg.content:
+				await msg.reply("曾志偉:\"打和!!!!\"")
+		elif msg.content in keyword and msg.author != self.bot.user:
 			await msg.channel.send(random_msgs)
 		elif msg.content in keyword2 and msg.author != self.bot.user:
-			await msg.reply(f"{msg.author.mention} \nhi welocme to **{msg.guild.name}** server")
+			await msg.reply(f"{msg.author.mention} \nhi welocme to **{msg.guild.name}** server {(random_msgs)}")
 		elif msg.content in keyword3 and msg.author != self.bot.user:
 			await msg.reply(Global_Func.code(lang="diff",msg = f"-{msg.author.name} \n-i am not fucking Parrot"))
 		# lang diff = red ,css[] = orange , fix = yellow , diff+ = green , css“ = light green , ini[ = blue
