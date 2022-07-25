@@ -10,7 +10,7 @@ intents.presences = True
 
 with open('setting.json','r',encoding='utf8')as jfile:
 	jdata=json.load(jfile)
-
+	
 
 # 讀取設定檔 load settings
 bot = commands.Bot(command_prefix= jdata['Prefix'], 

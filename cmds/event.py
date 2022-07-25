@@ -2,86 +2,60 @@ from itertools import count
 from lib2to3 import refactor
 import discord
 from discord.ext import commands
-from core.classes import Cog_Extension, Gloable_Data ,Global_Func
+from core.classes import Cog_Extension, Gloable_Data, Global_Func
 from core.errors import Errors
-import json, datetime, asyncio
+import json
+import datetime
+import asyncio
 import random
 
-with open('setting.json','r', encoding='utf8') as jfile:
-	jdata = json.load(jfile)
+with open('setting.json', 'r', encoding='utf8') as jfile:
+    jdata = json.load(jfile)
+
 
 class Event(Cog_Extension):
-	@commands.Cog.listener()
-	async def on_member_join(self,member):
-		channel = self.bot.get_channel(int(jdata['Welcome_channel']))
-		await channel.send(f"Hi{member.author.mention} , Welocme to **{member.guild.name}**👋🏻")
+    @commands.Cog.listener()
+    async def on_member_join(self, member):
+        channel = self.bot.get_channel(int(jdata['Welcome_channel']))
+        await channel.send(f"Hi{member.author.mention} , Welocme to **{member.guild.name}**👋🏻")
 
-	@commands.Cog.listener()
-	async def on_member_remove(self,member):
-		channel = self.bot.get_channel(int(jdata['Leave_channel']))
-		await channel.send(f"Noooo{member.author.mention} just dead in **{member.guild.name}**😵")
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        channel = self.bot.get_channel(int(jdata['Leave_channel']))
+        await channel.send(f"Noooo{member.author.mention} just dead in **{member.guild.name}**😵")
 
-	@commands.Cog.listener()
-	async def on_message(self,msg):
-		keyword2 =['hi','hello','Hi','Hello']
-		keyword =['apple','pen','pie','abc']
-		keyword3 =['Parrot','Parrot_bot']
-		if msg.content in keyword and msg.author != self.bot.user:
-			random_msgs = random.choice(jdata['randome_msg'])
-			await msg.channel.send(random_msgs)
-		elif msg.content in keyword2 and msg.author != self.bot.user:
-			await msg.reply(f"{msg.author.mention} \nhi welocme to **{msg.guild.name}** server")
-		elif msg.content in keyword3 and msg.author != self.bot.user:
-			await msg.reply(Global_Func.code(lang="diff",msg = f"-{msg.author.name} \n-i am not fucking Parrot"))
-		# lang diff = red ,css[] = orange , fix = yellow , diff+ = green , css“ = light green , ini[ = blue
-
-	@commands.Cog.listener()
-	async def on_command_error(self, ctx, error):
-		'''指令錯誤觸發事件'''
-		Gloable_Data.errors_counter += 1
-		error_command = '{0}_error'.format(ctx.command)
-		if hasattr(Errors, error_command):  # 檢查是否有 Custom Error Handler
-			error_cmd = getattr(Errors, error_command)
-			await error_cmd(self, ctx, error)
-			return
-		else:  # 使用 Default Error Handler
-			await Errors.default_error(self, ctx, error)
-	
-	@commands.Cog.listener()
-	async def on_raw_reaction_add(self, data):
-		#判斷反應貼圖給予相對應的身份組
-		#判斷反應反應信息是否為指定的訊息
-		if data.message_id == 997525435313299558:
-			if str(data.emoji) == '<:jail:997316329340162100>':
-				guild = self.bot.get_guild(data.guild_id)#取得當前所在伺服器
-				role = guild.get_role(997517745589600369)#取得伺服器內指定的身份組
-				await data.member.add_roles(role)#給予該成員身份組
-				await data.member.send(f"你取得了**{role}**身份組!")
-
-	@commands.Cog.listener()
-	async def on_raw_reaction_remove(self, data):
-		#判斷反應貼圖給予相對應的身份組
-		#判斷反應反應信息是否為指定的訊息
-		if data.message_id == 997525435313299558: 
-			if str(data.emoji) == '<:jail:997316329340162100>':
-				guild = self.bot.get_guild(data.guild_id)#取得當前所在伺服器
-				user = guild.get_member(data.user_id)#取得使用者
-				role = guild.get_role(997517745589600369)#取得伺服器內指定的身份組
-				await user.remove_roles(role)#移除該成員身份組
-				await user.send(f"你移除了**{role}**身份組!")
-
-	@commands.Cog.listener()
-	async def on_message_delete(self, msg):
-		counter = 1
-		async for audilog in msg.guild.audit_logs(action=discord.AuditLogAction.message_delete):
-			if counter == 1:
-				await msg.channel.send(audilog.user.name)
-				counter += 1
-			
-
-		# await msg.channel.send("刪除訊息內容:" + str(msg.content))
-		# await msg.channel.send("信息原本的作者:" + str(msg.author))
+    @commands.Cog.listener()
+    async def on_message(self, msg):
+        keyword1 = jdata['randome_msg_1']
+        keyword12 = random.choice(jdata['randome_msg_1'])
+        keyword2 = ['hi', 'hello', 'Hi', 'Hello']
+        keyword22 = random.choice(['hi', 'hello', 'Hi', 'Hello'])
+        keyword = ['xyz', 'pen', 'pie', 'abc', 'Cazy', 'cazy', 'shutup', 'omg' , 'idk']
+        keywordstart = ["start"]
+        keyword123 = random.choice(['xyz', 'pen', 'pie', 'abc', 'Cazy', 'cazy', 'shutup', 'omg' , 'idk'])
+        keyword3 = ['Parrot', 'Parrot_bot']
+        keyword32 = random.choice(['Parrot', 'Parrot_bot'])
+        random_msgs = jdata['randome_msg']
+        random_msgs2 = random.choice(jdata['randome_msg'])
+        random_memes = jdata['url_pic']
+        random_memes2 = random.choice(jdata['url_pic'])
+        if msg.content in keywordstart:
+            people = msg.author.send
+            await msg.reply(keyword123)
+            await people("start")
+        elif msg.content in keyword:
+            await msg.reply(keyword12)
+        elif msg.content in keyword1:
+            await msg.reply(keyword22)
+        elif msg.content in keyword2:
+            await msg.reply(keyword32)
+        elif msg.content in keyword3:
+            await msg.reply(random_memes2)
+        elif msg.content in random_memes:
+            await msg.reply(random_msgs2)
+        elif msg.content in random_msgs:
+            await msg.reply(keyword123)
 
 
 def setup(bot):
-	bot.add_cog(Event(bot))
+    bot.add_cog(Event(bot))

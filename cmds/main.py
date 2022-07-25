@@ -96,18 +96,21 @@ class Main(Cog_Extension):
 	@codetest.command()
 	async def cpp(self, ctx):
 		await ctx.send("C++")
+
+	@codetest.command()
+	async def stop(self, ctx):
+		self.bot.reload_extension("event.py")
 		
 
 
 	@commands.command()
 	async def info(self, ctx):
-		embed = discord.Embed(title="secret bot", description="my first discord bot !", color=0x28ddb0)
-		embed.set_author(name="secret bot", icon_url="https://yt3.ggpht.com/Jc6PYgdUIVd2lWGKub6MECAIVbRjHdbzFhOq6nMjsh6uM1HkXVC3AipTIV7qtLVB0uoAUlCmUQ=s600-c-k-c0x00ffffff-no-rj-rp-mo")
-		#embed.set_thumbnail(url="https://www.youtube.com/channel/UCBQifyXpKXmtzBzI_qK97rw/featured")
-		embed.add_field(name="開發者 Developers", value="harryxd_x#0211 (<@!823743982680801281>)", inline=False)
-		embed.add_field(name="版本 Version", value="0.8.3 b", inline=False)
-		embed.add_field(name="Prefix", value=";", inline=False)
-		embed.set_footer(text="Made with ❤")
+		embed = discord.Embed(title="Cazy secret bot", description="@$#&#$#(@$#&@$) !", color=0x28ddb0)
+		embed.set_author(name="Cazy_secret bot", icon_url="https://upload.wikimedia.org/wikipedia/commons/f/f7/Generic_error_message.png")
+		embed.add_field(name="開發者 Developers", value="Cazy Secret bot#9201 (<@!1001130371720679454>)", inline=False)
+		embed.add_field(name="版本 Version", value="1.0", inline=False)
+		embed.add_field(name="Prefix", value="`", inline=False)
+		embed.set_footer(text="Made with AI")
 		await ctx.send(embed=embed)
 
 			
