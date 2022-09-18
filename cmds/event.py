@@ -81,7 +81,7 @@ class Event(Cog_Extension):
 		counter = 1
 		async for audilog in msg.guild.audit_logs(action=discord.AuditLogAction.message_delete):
 			if counter == 1:
-				await msg.channel.send(audilog.user.name)
+				# await msg.channel.send(audilog.user.name)
 				counter += 1
 			
 

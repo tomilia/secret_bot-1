@@ -3,7 +3,8 @@ from discord.ext import commands
 from pip import main
 from core.classes import Cog_Extension, Logger
 from cmds.main import Main #導入 Main Cog
-import json, asyncio
+import json
+import asyncio
 
 with open('setting.json', 'r', encoding='utf8') as jfile:
    jdata = json.load(jfile)
