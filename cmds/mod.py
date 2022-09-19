@@ -1,3 +1,4 @@
+import types
 import discord
 from discord.ext import commands
 from core.classes import Cog_Extension, Global_Func
@@ -28,6 +29,48 @@ class Mod(Cog_Extension):
 				await ctx.send(Global_Func.code(lang='fix', msg=f'已清理 {num} 則訊息.\nReason: {reason}'))
 		else:
 			await ctx.send(content=Global_Func.code(lang='fix', msg=f'已清理 {num} 則訊息.\nReason: {reason}'), delete_after=5.0)
+
+	@commands.has_permissions(administrator=True)
+	@commands.command()
+	async def change(self, ctx, *, content: str ,type=None,url : str =None):
+		game = discord.Game(content)
+		# streaming = discord.Streaming(name=content,url=url)
+		watching = discord.ActivityType.watching(content)
+		listening = discord.ActivityType.listening(content)
+
+		Choose = {
+			"game",
+			"streaming",
+			"listening",
+			"watching"
+		}
+		if type is not None:
+			if type in Choose.keys():
+				if type == game():
+					await ctx.change_presence(status=discord.Status.idle, activity=game)
+					await ctx.send(lang='fix',msg=f"Change done. \nType:{Choose[type]}")
+				# elif type == streaming():
+				# 	await ctx.change_presence(status=discord.Status.idle, activity=streaming)
+				# 	await ctx.send(lang='fix',msg=f"Change done. \nType:{Choose[type]}")	
+				elif type == listening():
+					await ctx.change_presence(status=discord.Status.idle, activity=watching)
+					await ctx.send(lang='fix',msg=f"Change done. \nType:{Choose[type]}")
+				else:
+					await ctx.change_presence(status=discord.Status.idle, activity=listening)
+					await ctx.send(lang='fix',msg=f"Change done. \nType:{Choose[type]}")
+			else:
+				await ctx.change_presence(status=discord.Status.idle, activity=game)
+				await ctx.send(lang='fix',msg=f"type can't found\n Change done. \nType:game")
+		else:
+			await ctx.change_presence(status=discord.Status.idle, activity=game)
+			await ctx.send(lang='fix',msg=f"No type\n Change done. \nType:game")
+
+	@commands.command()
+	async def change2(self, ctx):#, *, content: str):
+		activity = discord.Game(name="!help")
+		await ctx.change_presence(status=discord.Status.idle, activity=activity)
+
+
 
 
 def setup(bot):

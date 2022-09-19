@@ -14,7 +14,7 @@ class Event(Cog_Extension):
 	@commands.Cog.listener()
 	async def on_member_join(self,member):
 		channel = self.bot.get_channel(int(jdata['Welcome_channel']))
-		await channel.send(f"Hi{member.author.mention} , Welocme to **{member.guild.name}**👋🏻")
+		await channel.send(f"Hi{member.author.mention} , Welcome to **{member.guild.name}**👋🏻")
 
 	@commands.Cog.listener()
 	async def on_member_remove(self,member):
