@@ -83,7 +83,7 @@ class Music(commands.Cog):
 			if type(song) == type(True):
 				await ctx.send("Could not download the song. Incorrect format try another keyword. This could be due to playlist or a livestream format.")
 			else:
-				await ctx.send("Song added to the queue")
+				await ctx.send(f"Song added to the list:\n**{song['title']}**")
 				self.music_queue.append([song, voice_channel])
 				
 				if self.is_playing == False:
@@ -128,7 +128,7 @@ class Music(commands.Cog):
 		else:
 			await ctx.send("No music in queue")
 
-	@commands.command(name="clear", aliases=["c", "bin"], help="Stops the music and clears the queue")
+	@commands.command(name="clear", aliases=["c", "bin","stop"], help="Stops the music and clears the queue")
 	async def clear(self, ctx):
 		if self.vc != None and self.is_playing:
 			self.vc.stop()
