@@ -10,6 +10,8 @@ class Music(commands.Cog):
 	
 		#all the music related stuff
 		self.is_playing = False
+		self.is_looping = False
+		self.is_not_looping = False
 		self.is_paused = False
 
 		# 2d array containing [song, channel]
@@ -100,6 +102,13 @@ class Music(commands.Cog):
 			self.is_playing = True
 			self.vc.resume()
 
+
+	@commands.command(name="stop", help="Pauses the current song being played")
+	async def stop(self, ctx, *args):
+		if self.is_playing:
+			self.is_playing = False
+			self.vc.stop()
+
 	@commands.command(name = "resume", aliases=["r"], help="Resumes playing with the discord bot")
 	async def resume(self, ctx, *args):
 		if self.is_paused:
@@ -128,7 +137,7 @@ class Music(commands.Cog):
 		else:
 			await ctx.send("No music in queue")
 
-	@commands.command(name="clear", aliases=["c", "bin","stop"], help="Stops the music and clears the queue")
+	@commands.command(name="clear", aliases=["c", "bin"], help="Stops the music and clears the queue")
 	async def clear(self, ctx):
 		if self.vc != None and self.is_playing:
 			self.vc.stop()

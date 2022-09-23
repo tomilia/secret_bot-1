@@ -1,3 +1,4 @@
+from http import server
 import types
 import discord
 from discord.ext import commands
@@ -29,6 +30,42 @@ class Mod(Cog_Extension):
 				await ctx.send(Global_Func.code(lang='fix', msg=f'已清理 {num} 則訊息.\nReason: {reason}'))
 		else:
 			await ctx.send(content=Global_Func.code(lang='fix', msg=f'已清理 {num} 則訊息.\nReason: {reason}'), delete_after=5.0)
+
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def kick(self, ctx, member:discord.Member, *,reason=None):
+		await member.kick(reason=reason)
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def ban(self,ctx, member:discord.Member, *,reason="No reson"):
+		role = ctx.guild.get_role(1022902918434783362)#取得伺服器內指定的身份組
+		await member.add_roles(role)#給予該成員身份組
+		await member.send(f"You get **{role}** because **{reason}**")
+
+	@commands.command()
+	@commands.has_permissions(administrator=True)
+	async def unban(self,ctx, member:discord.Member, *,reason="No reson"):
+		role = ctx.guild.get_role(1022902918434783362)#取得伺服器內指定的身份組
+		await member.remove_roles(role)#給予該成員身份組
+		await member.send(f"we clear your **{role}** because **{reason}**")
+		
+
+	@commands.command(pass_context = True)
+	@commands.has_permissions(administrator=True)
+	async def mute(self,ctx, member:discord.Member, *,reason="No reson"):
+		role = ctx.guild.get_role(1022901234530791464)#取得伺服器內指定的身份組
+		await member.add_roles(role)#給予該成員身份組
+		await member.send(f"You get **{role}** because **{reason}**")
+		
+
+	@commands.command(pass_context = True)
+	@commands.has_permissions(administrator=True)
+	async def unmute(self,ctx, member:discord.Member, *,reason= "No reson"):
+		role = ctx.guild.get_role(1022901234530791464)#取得伺服器內指定的身份組
+		await member.remove_roles(role)#給予該成員身份組
+		await member.send(f"we clear your **{role}** because **{reason}**")
 
 	@commands.has_permissions(administrator=True)
 	@commands.command()
