@@ -103,10 +103,20 @@ class Mod(Cog_Extension):
 			await ctx.send(lang='fix',msg=f"No type\n Change done. \nType:game")
 
 	@commands.command()
-	async def change2(self, ctx):#, *, content: str):
+	async def change2(self, ctx, type: str, *, content: str):#, *, content: str):
 		activity = discord.Game(name="!help")
-		await ctx.change_presence(status=discord.Status.idle, activity=activity)
-
+		typeList = {
+			"game": 1,
+			"streaming": 2,
+			"listening": 3,
+			"watching": 4
+		}
+		if(typeList[content] == 4){
+			watching = discord.Activity(type=discord.ActivityType.watching, name="a movie")
+			await this.bot.change_presence(activity=watching)
+			await ctx.send(content=Global_Func.code(lang='fix', msg=f"Change done. \nType:watching"), delete_after=5.0)
+		}
+		
 
 
 
